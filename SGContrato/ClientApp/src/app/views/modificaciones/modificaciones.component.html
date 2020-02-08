@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <app-sidenav></app-sidenav>
+    </div>
+    <div class="col-10 content">
+      <div class="title borde-title">
+        <a [routerLink]="['/contratos']"> Contratos </a> / Modificaci&oacute;n
+      </div>
+      <div class="content-section">
+        <div class="table">
+          <div class="table-responsive">
+            <span class="table-add float-right mb-0 mr-0">
+              <a class="text-warning" (click)="openDialog()">
+                <i class="fa fa-fw fa-plus fa-2x" aria-hidden="true"></i>
+              </a>
+            </span>
+            <p *ngIf="!(modificaciones && modificaciones.length)">
+              No Existen Datos que Mostrar
+            </p>
+            <table class="table table-striped-sm table-hover text-center" *ngIf="modificaciones && modificaciones.length">
+              <thead>
+                <tr>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Campo Modificado</th>
+                  <th scope="col">Dato Anterior</th>
+                  <th scope="col">Dato Actual</th>
+                  <th scope="col">Fecha de Modificaci&oacute;n</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let modificacion of modificaciones | paginate: { itemsPerPage: 4, currentPage: paginaActual}">
+                  <td>{{ modificacion.qn_tipoModificacion }}</td>
+                  <td>{{ modificacion.txt_motivoModificacion }}</td>
+                  <td>{{ modificacion.txt_motivoModificacion }}</td>
+                  <td>{{ modificacion.txt_motivoModificacion }}</td>
+                  <td>{{ modificacion.dt_fechaUltimoCambio | date: 'dd-MM-yyyy' }}</td>
+                  <td><a><i class="fa fa-refresh" aria-hidden="true"></i></a></td>
+                  <td><a><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="paginaActual = $event" *ngIf="modificaciones.length>itemsPerPage"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
