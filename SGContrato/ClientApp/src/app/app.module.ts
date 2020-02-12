@@ -26,7 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/List';
+import { MatListModule } from '@angular/material/list';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -53,6 +53,8 @@ import { RolComponent } from './catalogo/rol/rol.component';
 import { UsuarioComponent } from './catalogo/usuario/usuario.component';
 import { TipoCategoriaComponent } from './catalogo/tipoCategoria/tipo-categoria.component';
 import { NuevoContratoComponent } from './views/nuevo-contrato/nuevo-contrato.component';
+import { ParentComponent } from './parent/parent.component';
+
 
 import { ContratosService } from './views/contratos/contratos.service';
 import { NgbModal, NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -75,6 +77,8 @@ import { FormInformeMultaComponent } from './formularios/formInformeMulta/formIn
 //Pipes
 import { FormUserComponent } from './formularios/form-user/form-user.component';
 import { ModificacionDialogComponent } from './formularios/modificacion-dialog/modificacion-dialog.component';
+import { routes } from './app.routes';
+import { ShowPdfComponent } from './views/showPdfComponent/show-pdf.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +119,9 @@ import { ModificacionDialogComponent } from './formularios/modificacion-dialog/m
     FormRolComponent,
     FormSolicitudComponent,
     FormInformeMultaComponent,
-    ModificacionDialogComponent
+    ModificacionDialogComponent,
+    ParentComponent,
+    ShowPdfComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -145,31 +151,10 @@ import { ModificacionDialogComponent } from './formularios/modificacion-dialog/m
       preventDuplicates: true,
     }),
     NgbModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'contratos', component: ContratosComponent },
-      { path: 'DatosGenerales', component: DatosGeneralesComponent },
-      { path: 'Garantia', component: GarantiasComponent },
-      { path: 'Acta', component: ActasComponent },
-      { path: 'Entregables', component: EntregablesComponent },
-      { path: 'Informes', component: InformesComponent },
-      { path: 'Modificacion', component: ModificacionesComponent },
-      { path: 'Multa', component: MultasComponent },
-      { path: 'formaPago', component: PagosComponent },
-      { path: 'Solicitud', component: SolicitudComponent },
-      { path: 'Vencimientos', component: VencimientosComponent },
-      { path: 'Consulta', component: ConsultaComponent },
-      { path: 'Historial', component: HistorialComponent },
-      { path: 'Configuracion', component: CatalogoComponent },
-      { path: 'tipos-categoria', component: TipoCategoriaComponent },
-      { path: 'usuarios', component: UsuarioComponent },
-      { path: 'Tipos', component: TipoCategoriaComponent },
-      { path: 'roles', component: RolComponent },
-      { path: 'registrar-contrato', component: NuevoContratoComponent },
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [ContratosService, NgbActiveModal, MatNativeDateModule, MatDatepickerModule, DatePipe
-    ],
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     FormGarantiaComponent,
@@ -186,7 +171,9 @@ import { ModificacionDialogComponent } from './formularios/modificacion-dialog/m
     FormGarantiaComponent,
     FormSolicitudComponent,
     FormInformeMultaComponent,
-    ModificacionDialogComponent
+    ModificacionDialogComponent,
+    ParentComponent,
+    ShowPdfComponent
   ],
   exports: [
   ]

@@ -13,10 +13,11 @@ import { SideNavService } from '../../views/sidenav/sidenav.service';
 })
 export class FormFormaPagoComponent {
   @Input() pagos: FormaPago;
+  public sumaTotal = 0;
 
   public formaPagoID: number;
   public progress: number;
-  public message: string;  
+  public message: string;
   public tiposPago: Tipo[];
   formGroup: FormGroup;
 
@@ -39,14 +40,21 @@ export class FormFormaPagoComponent {
       txt_archivoPago: ['', Validators.required],
       dt_fechaUltimoCambio: today,
       contratoID: this.contratosService.getIdContratoActivo(),
-      pagos: this.formBuilder.array([])      
+      pagos: this.formBuilder.array([])
     });
   }
 
   agregarPago() {
-    let pagoArr = this.formGroup.get('pagos') as FormArray;
-    let pagoFormGroup = this.construirFormPago();
-    pagoArr.push(pagoFormGroup);
+    const contrato = this.contratosService.getContratoInstance();
+    if(this.sumaTotal - contrato.vm_montoAdjudicado != 0){
+      let pagoArr = this.formGroup.get('pagos') as FormArray;
+      let pagoFormGroup = this.construirFormPago();
+      pagoFormGroup.get('vm_montoPago').valueChanges.subscribe(changed => {
+        this.sumaTotal = this.sumaTotal + changed;
+        pagoFormGroup.get('qn_porcentajePago').patchValue({qn_porcentajePago: changed / contrato.vm_montoAdjudicado * 100});
+      })
+      pagoArr.push(pagoFormGroup);
+    }
   }
 
   construirFormPago() {

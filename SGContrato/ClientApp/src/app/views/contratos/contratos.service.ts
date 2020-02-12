@@ -25,21 +25,21 @@ export class ContratosService {
 
   // Metodo para traer un contrato
   public getContrato(contratoId: string): Observable<Contrato> {
-    //let params = new HttpParams().set('incluirGarantias', "true");
-    //return this.http.get<Contrato>(this.apiURL + '/' + contratoId, {params: params});
+    // let params = new HttpParams().set('incluirGarantias', "true");
+    // return this.http.get<Contrato>(this.apiURL + '/' + contratoId, {params: params});
     return this.http.get<Contrato>(this.apiURL + '/' + contratoId);
   }
 
   // Metodo para crear un nuevo contrato
   createContrato(contrato: Contrato): Observable<Contrato> {
-    return this.http.post<Contrato>(this.apiURL, contrato); 
+    return this.http.post<Contrato>(this.apiURL, contrato);
   }
 
   // Metodo para modificar un contrato
   updateContrato(contrato: Contrato): Observable<Contrato> {
     console.table(contrato);
     console.log(contrato);
-    //////alert(this.contratoId);
+    ////// alert(this.contratoId);
     return this.http.put<Contrato>(this.apiURL + '/' + this.contratoId, contrato);
   }
 
@@ -50,14 +50,23 @@ export class ContratosService {
 
   // Metodo para setear el id del contrato activo
   public setContratoId(contratoId: string) {
-      this.contratoId = contratoId;    
+      this.contratoId = contratoId;
   }
 
+  public setContratoInstance(contrato: Contrato) {
+    localStorage.setItem('CONTRACT', JSON.stringify(contrato));
+  }
+
+  public getContratoInstance() {
+    return JSON.parse(localStorage.getItem('CONTRACT')) as Contrato;
+  }
+
+
   public getIdContratoActivo() {
-    if (this.contratoId != "") {
+    if (this.contratoId !== '') {
       return this.contratoId;
     } else {
       return;
-    }    
+    }
   }
 }

@@ -8,7 +8,7 @@ import { Contrato } from '../../model.component';
 import { ContratosService } from './contratos.service';
 import { debounceTime } from 'rxjs/operators';
 import { SideNavService } from '../sidenav/sidenav.service';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-contratos',
   templateUrl: './contratos.component.html',
@@ -32,7 +32,7 @@ export class ContratosComponent implements OnInit {
       }
       if (RouterEvent instanceof NavigationEnd) {
         this.showLoadingIndicator = false;
-      }      
+      }
     });
   }
 
@@ -50,6 +50,7 @@ export class ContratosComponent implements OnInit {
   mostrarDetalle(contratoId: string) {
     this.sidenavService.setIsDisabled(true);
     this.contratosService.setContratoId(contratoId);
+    this.contratosService.setContratoInstance(_.find(this.contratos, { id: parseInt(contratoId, 10) }))
     this.router.navigate(["/DatosGenerales"]);
   }
 

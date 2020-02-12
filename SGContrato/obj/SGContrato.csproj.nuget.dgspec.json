@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fabian Sayay\\source\\repos\\SGContratos_v2\\SGContrato\\SGContrato.csproj": {}
+    "/home/developer/personal/fabian/proyectoIntegrador/SGContrato/SGContrato.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fabian Sayay\\source\\repos\\SGContratos_v2\\SGContrato\\SGContrato.csproj": {
+    "/home/developer/personal/fabian/proyectoIntegrador/SGContrato/SGContrato.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fabian Sayay\\source\\repos\\SGContratos_v2\\SGContrato\\SGContrato.csproj",
+        "projectUniqueName": "/home/developer/personal/fabian/proyectoIntegrador/SGContrato/SGContrato.csproj",
         "projectName": "SGContrato",
-        "projectPath": "C:\\Users\\Fabian Sayay\\source\\repos\\SGContratos_v2\\SGContrato\\SGContrato.csproj",
-        "packagesPath": "C:\\Users\\Fabian Sayay\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fabian Sayay\\source\\repos\\SGContratos_v2\\SGContrato\\obj\\",
+        "projectPath": "/home/developer/personal/fabian/proyectoIntegrador/SGContrato/SGContrato.csproj",
+        "packagesPath": "/home/developer/.nuget/packages/",
+        "outputPath": "/home/developer/personal/fabian/proyectoIntegrador/SGContrato/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Fabian Sayay\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/developer/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,15 +111,11 @@
               "version": "[3.0.1, 3.0.1]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
               "version": "[3.0.2, 3.0.2]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
               "version": "[3.0.0, 3.0.0]"
             }
           ],
@@ -133,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
         }
       }
     }

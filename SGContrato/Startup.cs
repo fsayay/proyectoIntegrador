@@ -53,6 +53,20 @@ namespace SGContrato
                 {
                     options.LoginPath = new PathString("/login");
                     options.AccessDeniedPath = new PathString("/access-denied");
+                    options.Events = new CookieAuthenticationEvents
+                    {
+                        OnSigningIn = context =>
+                        {
+                            // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
+                            var username = context.Principal.Identity.Name;
+                            //var userSvc = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                            //var identityResult = userSvc.GetClaimsIdentity(username, CookieAuthenticationDefaults.AuthenticationScheme);
+                            // `AddClaim` is not available directly from `context.Principal.Identity`.
+                            // We can add a new empty identity with the roles we want to the principal. 
+                            //context.Principal.AddIdentity(identityResult.Result);
+                            return Task.FromResult(0);
+                        }
+                    };
 
                 })
                 .AddCAS(options =>

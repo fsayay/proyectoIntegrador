@@ -24,10 +24,8 @@ namespace SGContrato.Controllers
         [Route("login")]
         public async Task Login(string returnUrl)
         {
-            if (returnUrl == null)
-            {
-                returnUrl = "http://google.com";
-            }
+
+            returnUrl = "https://127.0.0.1:5001/contratos";
             var props = new AuthenticationProperties { RedirectUri = returnUrl };
             await HttpContext.ChallengeAsync("CAS", props);
 
