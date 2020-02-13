@@ -11,14 +11,19 @@ import { Observable } from 'rxjs';
 export class ParentComponent implements OnInit {
     vencimientos$: any[] = [];
 
-    constructor(private vencimientoServices: VencimientoService) {}
+    constructor(private vencimientoServices: VencimientoService) { }
     ngOnInit(): void {
         this.vencimientoServices.emitPeriodically().subscribe(
-            venc  => {
-                this.vencimientos$.push(venc);
-                setTimeout(() => {
-                    this.vencimientos$.pop();
-                }, 8000);
+            venc => {
+                const today = new Date();
+                const vencimientoDate = new Date(venc.dt_fechaVencimiento);
+                if (today.getTime() >= vencimientoDate.getTime()) {
+                    this.vencimientos$.push(venc);
+                    setTimeout(() => {
+                        this.vencimientos$.pop();
+                    }, 8000);
+                }
+                
             }
         );
     }

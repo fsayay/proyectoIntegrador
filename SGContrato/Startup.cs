@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SGContrato.Models;
 using System;
+using ServiceReference;
+using WebCertificadosApp.Services;
 
 namespace SGContrato
 {
@@ -47,6 +49,9 @@ namespace SGContrato
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddScoped<IUserService, UserService>();
+
+
             // Configuracion de CAS para autenticacion
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -59,11 +64,12 @@ namespace SGContrato
                         {
                             // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
                             var username = context.Principal.Identity.Name;
-                            //var userSvc = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                            //var identityResult = userSvc.GetClaimsIdentity(username, CookieAuthenticationDefaults.AuthenticationScheme);
+                            Console.WriteLine(username);
+                            var userSvc = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                            var identityResult = userSvc.GetClaimsIdentity(username, CookieAuthenticationDefaults.AuthenticationScheme);
                             // `AddClaim` is not available directly from `context.Principal.Identity`.
                             // We can add a new empty identity with the roles we want to the principal. 
-                            //context.Principal.AddIdentity(identityResult.Result);
+                            context.Principal.AddIdentity(identityResult.Result);
                             return Task.FromResult(0);
                         }
                     };

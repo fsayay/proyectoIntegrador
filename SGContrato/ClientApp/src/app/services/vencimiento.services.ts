@@ -8,7 +8,7 @@ import { switchMap, flatMap, delay, map, concatAll, concatMap } from "rxjs/opera
 })
 
 export class VencimientoService {
-    _interval = 300000;
+    _interval = 3000;
     _delay = 3000;
 
     constructor(private _http: HttpClient) {}
